@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>My Tasks | eQ | encodiQ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="shortcut icon" href="https://manage.encodiq.com/assets/images/favicon.png">
+    <link rel="stylesheet" href="https://manage.encodiq.com/assets/libs/smartwizard/css/smart_wizard.min.css"
+        type="text/css" />
+    <link rel="stylesheet"
+        href="https://manage.encodiq.com/assets/libs/smartwizard/css/smart_wizard_theme_arrows.min.css"
+        type="text/css" />
+    <link rel="stylesheet"
+        href="https://manage.encodiq.com/assets/libs/smartwizard/css/smart_wizard_theme_circles.min.css"
+        type="text/css" />
+    <link rel="stylesheet" href="https://manage.encodiq.com/assets/libs/smartwizard/css/smart_wizard_theme_dots.min.css"
+        type="text/css" />
+
+    <!-- plugins -->
+    <!-- Plugins css -->
+    <link href="https://manage.encodiq.com/assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://manage.encodiq.com/assets/libs/multiselect/css/multi-select.css" rel="stylesheet"
+        type="text/css" />
+    <link href="https://manage.encodiq.com/assets/libs/flatpickr/flatpickr.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"
+        type="text/css" />
+
+    <!-- third party css -->
+    <link href="https://manage.encodiq.com/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css"
+        rel="stylesheet" type="text/css" />
+    <link href="https://manage.encodiq.com/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css"
+        rel="stylesheet" type="text/css" />
+    <link href="https://manage.encodiq.com/assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css"
+        rel="stylesheet" type="text/css" />
+    <link href="https://manage.encodiq.com/assets/libs/datatables.net-select-bs4/css/select.bootstrap4.min.css"
+        rel="stylesheet" type="text/css" />
+    <!-- third party css end -->
+    <!-- App css -->
+    <link href="https://manage.encodiq.com/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"
+        id="bs-default-stylesheet" />
+    <link href="https://manage.encodiq.com/assets/css/app.min.css" rel="stylesheet" type="text/css"
+        id="app-default-stylesheet" />
+
+    <link href="https://manage.encodiq.com/assets/css/bootstrap-dark.min.css" rel="stylesheet" type="text/css"
+        id="bs-dark-stylesheet" disabled />
+    <link href="https://manage.encodiq.com/assets/css/app-dark.min.css" rel="stylesheet" type="text/css"
+        id="app-dark-stylesheet" disabled />
+
+    <!-- icons -->
+    <link href="https://manage.encodiq.com/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <style>
+        .ui.dropdown {
+            max-width: 800px;
+        }
+
+        @media only screen and (max-width: 767px) {
+            .ui.selection.dropdown .menu {
+                /*      max-height: 8.01428571rem; /* + 1.335714285 to 9.349999995rem */
+                /*      max-height: 9.349999995rem; /* Adds a half */
+                max-height: 16.02857142rem;
+                /* Double size */
+            }
+
+            .button-menu-mobile {
+                visibility: hidden;
+            }
+
+            .logo-box {
+                visibility: hidden;
+            }
+
+            .listt {
+                position: absolute;
+            }
+
+            .listt li {
+                font-size: 13px;
+            }
+
+            #login,
+            #Admission {
+                visibility: hidden;
+            }
+
+        }
+
+        @media only screen and (min-width: 768px) {
+            .ui.selection.dropdown .menu {
+                /*         max-height: 10.68571429rem; /* + 1.3357142863 to 12.0214285763rem */
+                max-height: 12.0214285763rem;
+            }
+        }
+
+        @media only screen and (min-width: 992px) {
+            .ui.selection.dropdown .menu {
+                max-height: 16.02857143rem;
+                /* + 1.3357142858 to 17.3642857158rem */
+            }
+        }
+
+        @media only screen and (min-width: 1920px) {
+            .ui.selection.dropdown .menu {
+                max-height: 21.37142857rem;
+                /* + 1.3357142856 to 22.7071428556rem */
+            }
+        }
+    </style>
+    <style>
+        /* width */
+
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 5px;
+        }
+
+        /* Track */
+
+        ::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 5px #f5f5f5;
+            border-radius: 0px;
+        }
+
+        /* Handle */
+
+        ::-webkit-scrollbar-thumb {
+            background: #e6e6e6;
+            border-radius: 0px;
+        }
+
+        /* Handle on hover */
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #d1d1d1;
+        }
+    </style>
+
+
+
+    <style>
+        table.dataTable thead .sorting::before,
+        table.dataTable thead .sorting_asc::before {
+            display: none;
+        }
+
+        table.dataTable thead .sorting_desc::before {
+            display: none;
+        }
+
+        table.dataTable thead .sorting::after,
+        table.dataTable thead .sorting_asc::after {
+            display: none;
+        }
+
+        table.dataTable thead .sorting_desc::after {
+            display: none;
+        }
+
+        table.dataTable thead .sorting {
+            background-image: url(https://datatables.net/media/images/sort_both.png);
+            background-repeat: no-repeat;
+            padding: 10px;
+            background-position: center left;
+        }
+
+        table.dataTable thead .sorting_asc {
+            background-image: url(https://datatables.net/media/images/sort_asc.png);
+            background-repeat: no-repeat;
+            padding: 10px;
+            background-position: center left;
+        }
+
+        table.dataTable thead .sorting_desc {
+            background-image: url(https://datatables.net/media/images/sort_desc.png);
+            background-repeat: no-repeat;
+            padding: 10px;
+            background-position: center left;
+        }
+
+        .listt li {
+            padding-right: 25px !important;
+            color: black;
+        }
+
+        .listt li:hover {
+            color: rgb(42, 42, 235);
+        }
+    </style>
+
+</head>
+
+<body class="loading" style="min-height:0px!important;"
+    data-layout='{"mode": "light", "width": "fluid", "menuPosition": "fixed", "sidebar": { "color": "light", "size": "condensed" }, "topbar": {"color": "light"}, "showRightSidebarOnPageLoad": false}'>
+
+    <!-- Begin page -->
+    <div id="wrapper">
+        <!-- Topbar Start -->
+        <div class="navbar-custom">
+            <div class="container-fluid">
+
+                <button type="button" id="login"
+                    class="btn btn-outline-secondary btn-rounded float-end m-2  btn-sm ">Login</button>
+                <button type="button" id="signin"
+                    class="btn btn-outline-secondary btn-rounded float-end m-2  btn-sm ">Admission</button>
+                <ul class="list-unstyled float-end my-3 me-5 d-flex h5 listt">
+
+                    <a href="./Home.html">
+                        <li>HOME</li>
+                    </a>
+                    <a href="./About.html">
+                        <li>ABOUT US</li>
+                    </a>
+                    <a href="./Course.html">
+                        <li>COURSES</li>
+                    </a>
+                    <a href="./ContactUsPage.html">
+                        <li>CONTACT US</li>
+                    </a>
+                </ul>
+
+
+                <!-- LOGO -->
+                <div class="logo-box">
+                    <a href="https://manage.encodiq.com" class="logo logo-dark">
+                        <span class="logo-sm">
+                            <img src="https://manage.encodiq.com/assets/images/favicon.png" alt="" height="26">
+                            <!-- <span class="logo-lg-text-light">Shreyu</span> -->
+                        </span>
+                        <span class="logo-lg">
+                            <img src="https://manage.encodiq.com/assets/images/logo.png" alt="" width="80%">
+                            <!-- <span class="logo-lg-text-light">S</span> -->
+                        </span>
+                    </a>
+
+                    <a href="https://manage.encodiq.com" class="logo logo-light">
+                        <span class="logo-sm">
+                            <img src="https://manage.encodiq.com/assets/images/favicon.png" alt="" height="26">
+                        </span>
+                        <span class="logo-lg">
+                            <img src="https://manage.encodiq.com/assets/images/logo.png" alt="" width="80%">
+                        </span>
+                    </a>
+                </div>
+
+                <ul class="list-unstyled topnav-menu topnav-menu-left m-0">
+                    <li>
+                        <button class="button-menu-mobile">
+                            <i data-feather="menu"></i>
+                        </button>
+                    </li>
+
+                    <li>
+                        <!-- Mobile menu toggle (Horizontal Layout)-->
+                        <a class="navbar-toggle nav-link" data-bs-toggle="collapse"
+                            data-bs-target="#topnav-menu-content">
+                            <div class="lines">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </a>
+                        <!-- End mobile menu toggle-->
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <!-- end Topbar -->
+        <div class="left-side-menu">
+            <div class="h-100" data-simplebar>
+                <!--- Sidemenu -->
+                <div id="sidebar-menu">
+                    <ul id="side-menu">
+                        <li class="menu-title">Navigation</li>
+                        <li>
+                            <a href="https://manage.encodiq.com/dash.php">
+                                <i data-feather="home"></i>
+                                <span> Dashboard </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#Tickets" data-bs-toggle="collapse">
+                                <i data-feather="tag"></i>
+                                <span> Tickets </span>
+                            </a>
+                            <div class="collapse" id="Tickets">
+                                <ul class="nav-second-level">
+                                    <li><a href="https://manage.encodiq.com/addons/tickets/index.php">Allocate
+                                            Tickets</a></li>
+                                    <li><a href="https://manage.encodiq.com/addons/tickets/assigned.php">Asssigned
+                                            Tickets</a></li>
+                                    <li><a href="https://manage.encodiq.com/addons/tickets/admin.php">Tickets Master</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#Interns" data-bs-toggle="collapse">
+                                <i data-feather="box"></i>
+                                <span> Interns </span>
+                            </a>
+                            <div class="collapse" id="Interns">
+                                <ul class="nav-second-level">
+                                    <li><a href="https://manage.encodiq.com/addons/interns/leave_user.php">Leave
+                                            User</a></li>
+                                    <li><a href="https://manage.encodiq.com/addons/interns/journal_user.php">Journal
+                                            User</a></li>
+                                    <li><a href="https://manage.encodiq.com/addons/interns/leave_master.php">Leave
+                                            Master</a></li>
+                                    <li><a href="https://manage.encodiq.com/addons/interns/journal_master.php">Journal
+                                            Master</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#Management" data-bs-toggle="collapse">
+                                <i data-feather="users"></i>
+                                <span> Management </span>
+                            </a>
+                            <div class="collapse" id="Management">
+                                <ul class="nav-second-level">
+                                    <li><a href="https://manage.encodiq.com/addons/default/users.php">All Users</a></li>
+                                    <li><a href="https://manage.encodiq.com/addons/default/users.php?data_state=active">Active
+                                            Users</a></li>
+                                    <li><a href="https://manage.encodiq.com/addons/default/users.php?data_state=purged">Purged
+                                            Users</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#Tasks" data-bs-toggle="collapse">
+                                <i data-feather="clipboard"></i>
+                                <span> Tasks </span>
+                            </a>
+                            <div class="collapse" id="Tasks">
+                                <ul class="nav-second-level">
+                                    <li><a href="https://manage.encodiq.com/addons/tasks/my_task.php">My Task</a></li>
+                                    <li><a href="https://manage.encodiq.com/addons/tasks/assigned_task.php">Task
+                                            Given</a></li>
+                                    <li><a href="https://manage.encodiq.com/addons/tasks/ongoing_task.php">Total
+                                            Task</a></li>
+                                    <li><a href="https://manage.encodiq.com/addons/tasks/adm_task.php">Task Master</a>
+                                    </li>
+                                    <li><a href="https://manage.encodiq.com/addons/tasks/my_tasktags.php">My
+                                            Tasktags</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#Dev" data-bs-toggle="collapse">
+                                <i data-feather="code"></i>
+                                <span> Dev </span>
+                            </a>
+                            <div class="collapse" id="Dev">
+                                <ul class="nav-second-level">
+                                    <li><a href="#">File Manager</a></li>
+                                    <li><a href="#">DB Manager</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#Logs" data-bs-toggle="collapse">
+                                <i data-feather="file-text"></i>
+                                <span> Logs </span>
+                            </a>
+                            <div class="collapse" id="Logs">
+                                <ul class="nav-second-level">
+                                    <li><a href="https://manage.encodiq.com/addons/logs/u_logs.php">User Logs</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="https://manage.encodiq.com/signout.php">
+                                <i data-feather="log-out"></i>
+                                <span> Signout </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+
+        <!-- Left Sidebar End -->
+        <!-- ============================================================== -->
+        <!-- Start Page Content here -->
+        <!-- ============================================================== -->
+
+        <!-- Start coiding from here-->
+        <div class="content-page main">
+            <!-- Start Content-->
+            <div class="container-fluid">
+                <div class="account-pages my-2 main">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-xl-10">
+                                <div class="card">
+                                    <div class="card-body p-0">
+                                        <div class="row g-0">
+                                            <div class="col-lg-6 p-4">
+                                                <div class="mx-auto">
+                                                    <a href="Home.html">
+                                                        <img src="./Images/logo1.png" alt="" height="40" width="30" />
+                                                    </a>
+                                                </div>
+                                                <h3 class="justify-content-center">Login Here</h3>
+                                                <h6 class="h5 mb-0 mt-3">Create your account</h6>
+                                                <p class="text-muted mt-1 mb-4">Create a free account and start using
+                                                    Shreyu</p>
+
+                                                <form action="#" class="authentication-form">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Name</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-text">
+                                                                <i class="icon-dual" data-feather="user"></i>
+                                                            </span>
+                                                            <input type="text" class="form-control" id="name"
+                                                                placeholder="Your full name">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Email Address</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-text">
+                                                                <i class="icon-dual" data-feather="mail"></i>
+                                                            </span>
+                                                            <input type="email" class="form-control" id="email"
+                                                                placeholder="hello@coderthemes.com">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Password</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-text">
+                                                                <i class="icon-dual" data-feather="lock"></i>
+                                                            </span>
+                                                            <input type="password" class="form-control" id="password"
+                                                                placeholder="Enter your password">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <div class="form-check">
+                                                            <input type="checkbox" class="form-check-input"
+                                                                id="checkbox-signup" checked>
+                                                            <label class="form-check-label" for="checkbox-signup">
+                                                                I accept <a href="javascript: void(0);">Terms and
+                                                                    Conditions</a>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-3 text-center d-grid">
+                                                        <button class="btn btn-primary shadow-lg" type="submit">Sign
+                                                            Up</button>
+                                                    </div>
+                                                </form>
+
+                                            </div>
+                                            <div class="col-lg-6 d-lg-inline-block">
+
+                                                <div class="overlay">
+                                                    <img src="./Images/sign.png" class="img-fluid" alt="login"
+                                                        height="650" width="500" />
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+
+                                    </div> <!-- end card-body -->
+                                </div>
+                                <!-- end card -->
+
+                                <div class="row mt-3">
+                                    <div class="col-12 text-center">
+                                        <p class="text-muted">Already have account? <a href="pages-login.html"
+                                                class="text-primary fw-bold ms-1">Login</a></p>
+                                    </div> <!-- end col -->
+                                </div>
+                                <!-- end row -->
+
+                            </div> <!-- end col -->
+                        </div>
+                        <!-- end row -->
+                    </div>
+                    <!-- end container -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- content -->
+    <!-- Footer Start -->
+    <!-- Footer Start -->
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <script>
+                        document.write(new Date().getFullYear())
+                    </script> &copy; Encodiq
+                    <a href="#"></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- end Footer -->
+    <!-- end Footer -->
+    </div>
+    </div>
+    <!-- END wrapper -->
+
+    <!-- Vendor js -->
+    <script src="https://manage.encodiq.com/assets/js/vendor.min.js"></script>
+    <script src="https://manage.encodiq.com/assets/libs/select2/js/select2.min.js"></script>
+    <script src="https://manage.encodiq.com/assets/libs/multiselect/js/jquery.multi-select.js"></script>
+    <!-- optional plugins -->
+    <script src="https://manage.encodiq.com/assets/libs/moment/min/moment.min.js"></script>
+    <script src="https://manage.encodiq.com/assets/libs/apexcharts/apexcharts.min.js"></script>
+    <script src="https://manage.encodiq.com/assets/libs/flatpickr/flatpickr.min.js"></script>
+    <!-- page js -->
+    <script src="https://manage.encodiq.com/assets/js/pages/dashboard.init.js"></script>
+    <script src="https://manage.encodiq.com/assets/libs/smartwizard/js/jquery.smartWizard.min.js"></script>
+    <script src="https://manage.encodiq.com/assets/js/pages/form-wizard.init.js"></script>
+    <!-- third party js -->
+    <script src="https://manage.encodiq.com/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="https://manage.encodiq.com/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script
+        src="https://manage.encodiq.com/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script
+        src="https://manage.encodiq.com/assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+    <script src="https://manage.encodiq.com/assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script
+        src="https://manage.encodiq.com/assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+    <script src="https://manage.encodiq.com/assets/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="https://manage.encodiq.com/assets/libs/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="https://manage.encodiq.com/assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="https://manage.encodiq.com/assets/libs/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="https://manage.encodiq.com/assets/libs/datatables.net-select/js/dataTables.select.min.js"></script>
+    <!-- third party js ends -->
+    <link rel="stylesheet" href="https://adore.simtrak.in/assets/css/datapicker/datepicker3.css">
+    <script src="https://adore.simtrak.in/assets/js/datapicker/bootstrap-datepicker.js"></script>
+    <script src="https://adore.simtrak.in/assets/js/datapicker/datepicker-active.js"></script>
+    <script src="https://manage.encodiq.com/assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script>
+    <!--Color picker-->
+    <script src="https://manage.encodiq.com/assets/libs/spectrum-colorpicker2/spectrum.min.js"></script>
+    <!-- Init js-->
+    <script src="https://manage.encodiq.com/assets/js/pages/form-advanced.init.js"></script>
+    <!-- Datatables init -->
+    <script src="https://manage.encodiq.com/assets/js/pages/datatables.init.js"></script>
+    <!-- App js -->
+    <script src="https://manage.encodiq.com/assets/js/app.min.js"></script>
+
+
+
+    <script type="text/javascript" class="init">
+        $(document).ready(function () {
+            $('#tasks_t').DataTable({
+                "order": [
+                    [0, "desc"]
+                ]
+            });
+        });
+
+        document.getElementById('login').onclick = function () {
+            location.href = './Loginnn.html'
+        }
+        document.getElementById('signin').onclick = function () {
+            location.href = './AdmissionForm.html'
+        }
+
+    </script>
+
+</body>
+
+</html>
